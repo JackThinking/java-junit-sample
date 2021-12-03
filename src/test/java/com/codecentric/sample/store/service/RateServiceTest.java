@@ -34,18 +34,21 @@ import static org.powermock.api.mockito.PowerMockito.verifyStatic;
 @PrepareForTest({StaticService.class})
 public class RateServiceTest {
 
+    // 依赖的外部服务
     @Mock
     private ItemRepository itemRepositoryeMock;
 
+    // 需要模拟调用的类
     @InjectMocks
     private RateService rateService;
 
+    // 准备测试数据
     @Parameterized.Parameters
     public static Collection<Object[]> data() {
-        return Arrays.asList(new Object[][] {
-                { new Item("it1", "item 1", "description 1", 20, true), 1, 20 },
-                { new Item("it2", "item 2", "description 2", 30, true), 2, 60 },
-                { new Item("it3", "item 3", "description 3", 40, true), 3, 120 },
+        return Arrays.asList(new Object[][]{
+                {new Item("it1", "item 1", "description 1", 20, true), 1, 20},
+                {new Item("it2", "item 2", "description 2", 30, true), 2, 60},
+                {new Item("it3", "item 3", "description 3", 40, true), 3, 120},
         });
     }
 
@@ -58,6 +61,7 @@ public class RateServiceTest {
     @Parameterized.Parameter(value = 2)
     public int expected;
 
+    // 执行前调用，用于初始化Mockito
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
@@ -68,7 +72,7 @@ public class RateServiceTest {
     public void rateCalculationTest() {
 
         //
-        // Given
+        // 静态方法调用
         //
         when(itemRepositoryeMock.findById(item.getId())).thenReturn(item);
         mockStatic(StaticService.class);
