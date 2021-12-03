@@ -89,7 +89,7 @@ public class RateServiceTest {
         int result = rateService.calculateRate(item.getId(), multiplicator);
 
         //
-        // TODO: 暂时不知道如何测试静态函数调用
+        // 测试验证执行的次数
         //
         verify(itemRepositoryeMock, times(1)).findById(item.getId());
         verifyStatic(times(1));
