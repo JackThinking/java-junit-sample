@@ -52,6 +52,7 @@ public class RateServiceTest {
         });
     }
 
+    // 测试数据，映射上述准备数据的方法
     @Parameterized.Parameter(value = 0)
     public Item item;
 
@@ -72,19 +73,23 @@ public class RateServiceTest {
     public void rateCalculationTest() {
 
         //
-        // 静态方法调用
+        // mock 函数返回结果
         //
+
         when(itemRepositoryeMock.findById(item.getId())).thenReturn(item);
+        //
+        // mock 静态函数调用
+        //
         mockStatic(StaticService.class);
         PowerMockito.when(StaticService.getMultiplicator()).thenReturn(multiplicator);
 
         //
-        // When
+        // 执行测试
         //
         int result = rateService.calculateRate(item.getId(), multiplicator);
 
         //
-        // Then
+        // TODO: 暂时不知道如何测试静态函数调用
         //
         verify(itemRepositoryeMock, times(1)).findById(item.getId());
         verifyStatic(times(1));
