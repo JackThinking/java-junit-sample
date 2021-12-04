@@ -35,6 +35,9 @@ import static org.powermock.api.mockito.PowerMockito.verifyStatic;
 
 public class CustomerServiceTest {
 
+    /**
+     * mock方法和spy方法都可以对对象进行mock。但是前者是接管了对象的全部方法，而后者只是将有桩实现（stubbing）的调用进行mock，其余方法仍然是实际调用。
+     */
     @Spy
     private AddressService addressService;
 
@@ -80,13 +83,14 @@ public class CustomerServiceTest {
         //
         Customer customer = new Customer("204", "John Do", "224B Bakerstreet");
 
+        // void 方法的mock
         doAnswer(new Answer<Customer>() {
             @Override
             public Customer answer(InvocationOnMock invocation) throws Throwable {
                 Object originalArgument = (invocation.getArguments())[0];
                 Customer returnedValue = (Customer) originalArgument;
                 returnedValue.setHostValue("TestHostValue");
-                return null ;
+                return null;
             }
         }).when(hostService).expand(any(Customer.class));
 

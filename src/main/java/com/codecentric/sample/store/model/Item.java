@@ -1,7 +1,8 @@
 package com.codecentric.sample.store.model;
 
-import java.util.UUID;
-
+/**
+ * @author citrix
+ */
 public class Item {
 
 

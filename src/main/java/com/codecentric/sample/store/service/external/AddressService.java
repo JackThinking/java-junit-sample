@@ -14,6 +14,10 @@ public class AddressService {
 
         // Assume complicated request here that requires some external host services
         // to retrieve the proper PLZ
+        return getAnInt();
+    }
+
+    private int getAnInt() {
         return 12345;
     }
 

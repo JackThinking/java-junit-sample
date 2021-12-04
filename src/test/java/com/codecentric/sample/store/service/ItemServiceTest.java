@@ -89,7 +89,7 @@ public class ItemServiceTest {
         verifyStatic(times(1));
         StaticService.getMultiplicator();
 
-        assertThat(averagePriceForAllItems, is(2000*5));
+        assertThat(averagePriceForAllItems, is(2000 * 5));
     }
 
     @Test

@@ -6,6 +6,10 @@ public class StaticService {
 
 
     public static int getMultiplicator() {
+        return innerStaticMethod();
+    }
+
+    private static int innerStaticMethod() {
         return 10;
     }
 
